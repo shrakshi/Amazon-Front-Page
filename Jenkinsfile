@@ -34,9 +34,9 @@ pipeline{
 	stage("Docker Build & Push"){
             steps{
                 script{
-                   withDockerRegistry([credentialsId: 'prashikrk']){
+                   withDockerRegistry([credentialsId: 'shravanikk']){
                        sh "docker build -t amazon ."
-                       sh "docker tag amazon prashikrk/amazon:latest "
+                       sh "docker tag amazon shravanikk/amazon:latest "
                        sh "docker push prashikrk/amazon:latest "
                     }
                 }
@@ -44,7 +44,7 @@ pipeline{
         }
 	stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name amazon -p 3000:3000 prashikrk/amazon:latest'
+                sh 'docker run -d --name amazon -p 3000:3000 shravanikk/amazon:latest'
             }
         }
     }
