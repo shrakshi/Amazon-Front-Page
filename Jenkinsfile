@@ -34,17 +34,17 @@ pipeline{
 	stage("Docker Build & Push"){
             steps{
                 script{
-                   withDockerRegistry([credentialsId: 'prashikrk']){
+                   withDockerRegistry([credentialsId: 'redhatgrras']){
                        sh "docker build -t amazon ."
-                       sh "docker tag amazon prashikrk/amazon:latest "
-                       sh "docker push prashikrk/amazon:latest "
+                       sh "docker tag amazon redhatgrras/amazon:latest "
+                       sh "docker push redhatgrras/amazon:latest "
                     }
                 }
             }
         }
 	stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name amazon -p 3000:3000 prashikrk/amazon:latest'
+                sh 'docker run -d --name amazon -p 3000:3000 redhatgrras/amazon:latest'
             }
         }
     }
